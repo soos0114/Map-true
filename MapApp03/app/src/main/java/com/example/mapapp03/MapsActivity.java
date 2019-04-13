@@ -1,5 +1,6 @@
 package com.example.mapapp03;
 
+import android.graphics.Color;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -9,6 +10,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
+
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
@@ -41,9 +45,23 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // シドニーの緯度経度を設定して、そこにマーカーを設置ｓ
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        //sydonyにカメラ
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-        LatLng paris = new LatLng(48.8610965,2.2900665);
+
+        LatLng paris = new LatLng(48.8588377,2.2770202);
         mMap.addMarker(new MarkerOptions().position(paris).title("Marker in paris"));
+
+
+        //　カメラの位置
+        LatLng center= new LatLng(43.831389, 34.806266);
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(paris));
+
+        //線を引く
+        PolylineOptions line = new PolylineOptions();
+        line.add(paris);
+        line.add(sydney);
+        line.color(Color.YELLOW);
+        line.width(4);
+        line.geodesic(true);
+
+        mMap.addPolyline(line);
     }
 }
