@@ -8,6 +8,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
@@ -49,6 +51,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         LatLng paris = new LatLng(48.8588377,2.2770202);
         mMap.addMarker(new MarkerOptions().position(paris).title("Marker in paris"));
 
+        LatLng africa = new LatLng(-34.29689921,18.2471585);
+        mMap.addMarker(new MarkerOptions().position(africa).title("Marker in africa"));
+
+
 
         //　カメラの位置
         LatLng center= new LatLng(43.831389, 34.806266);
@@ -56,6 +62,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //線を引く
         PolylineOptions line = new PolylineOptions();
+        //、測地点,いろ、太さ
         line.add(paris);
         line.add(sydney);
         line.color(Color.YELLOW);
@@ -63,5 +70,21 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         line.geodesic(true);
 
         mMap.addPolyline(line);
+        //三地点を結ぶ半透明の三角形
+
+       // PolygonOptions options =new PolygonOptions();
+       // options.add(paris,africa,sydney);
+     //   options.fillColor(Color.argb(64,0,100,0));
+     //   mMap.addPolygon(options);
+
+        //三地点を結ぶ半透明の円を描くように大きさを調整
+        CircleOptions circleparis = new CircleOptions();
+        circleparis.center(paris);
+        circleparis.radius(120000);
+        mMap.addCircle(circleparis);
+
+
+
+
     }
 }
