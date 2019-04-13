@@ -38,9 +38,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
+        // シドニーの緯度経度を設定して、そこにマーカーを設置ｓ
         LatLng sydney = new LatLng(-34, 151);
         mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+        //sydonyにカメラ
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng paris = new LatLng(48.8610965,2.2900665);
+        mMap.addMarker(new MarkerOptions().position(paris).title("Marker in paris"));
     }
 }
